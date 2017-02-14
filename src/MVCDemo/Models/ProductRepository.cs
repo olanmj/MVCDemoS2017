@@ -46,6 +46,17 @@ namespace MVCDemo.Models
             };
 
             ProductList.Add(p);
+
+            p = new Product
+            {
+                ProductID = 103,
+                Name = "Hammer",
+                Description = "Everything looks like a nail",
+                Price = 15.75M,
+                Category = "Hardware"
+            };
+
+            ProductList.Add(p);
         }
     }
 

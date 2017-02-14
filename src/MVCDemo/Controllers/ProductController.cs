@@ -32,7 +32,7 @@ namespace MVCDemo.Controllers
                 Name = "Kayak",
                 Description = "A boat for one person",
                 Price = 1000M,
-                Category = "Watersports";
+                Category = "Watersports"
             };
 
             return View(p);
