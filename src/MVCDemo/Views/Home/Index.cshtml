@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>My very plain home page</h2>
+
+@for (var i = 0; i < (int)ViewData["UserNum"]; i++)
+{
+    <h3>
+        Name: @ViewData["UserName"]
+    </h3>
+}
+    
