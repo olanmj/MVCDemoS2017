@@ -4,6 +4,9 @@
 
 <h2>My very plain home page</h2>
 
+<a asp-action="ShowProduct" asp-controller="Product" class="btn btn-info">See a sample product</a>
+<a asp-controller="Product" class="btn btn-info">See a list of products</a>
+
 @for (var i = 0; i < (int)ViewData["UserNum"]; i++)
 {
     <h3>
