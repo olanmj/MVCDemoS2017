@@ -7,6 +7,13 @@
         <h4>Product</h4>
         <hr />
         <div class="form-group">
+            <label class="control-label col-md-2" asp-for="ProductID">Product ID</label>
+            <div class="col-md-10">
+                <input class="form-control" type="number" id="ProductID" name="ProductID" />
+                <span class="text-danger field-validation-valid" data-valmsg-for="ProductID" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="control-label col-md-2" asp-for="Name">Name</label>
             <div class="col-md-10">
                 <input class="form-control" type="text" id="Name" name="Name" />
