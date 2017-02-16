@@ -58,6 +58,11 @@ namespace MVCDemo.Models
 
             ProductList.Add(p);
         }
+
+        public void Add(Product product)
+        {
+            ProductList.Add(product);
+        }
     }
 
 

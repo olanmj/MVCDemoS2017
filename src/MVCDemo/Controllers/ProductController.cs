@@ -11,12 +11,8 @@ namespace MVCDemo.Controllers
 {
     public class ProductController : Controller
     {
+        // This needs to be static
         private ProductRepository repo = new ProductRepository();
-
-        //public ProductController()
-        //{
-          
-        //}
 
         public IActionResult Index()
         {
@@ -36,6 +32,18 @@ namespace MVCDemo.Controllers
             };
 
             return View(p);
+        }
+
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddProduct(Product product)
+        {
+            repo.Add(product);
+            return View();
         }
     }
 }
