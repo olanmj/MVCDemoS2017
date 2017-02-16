@@ -4,9 +4,10 @@ namespace MVCDemo.Models
 {
     public class Product
     {
-       // [Required]
+        [Required]
         public int ProductID { get; set; }
-      //  [Required]
+        [Required]
+        [StringLength(25, MinimumLength =2)]
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }

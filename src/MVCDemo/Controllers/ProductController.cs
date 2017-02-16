@@ -42,16 +42,17 @@ namespace MVCDemo.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 repo.Add(product);
 
                 return RedirectToAction("Index");
 
-            //} else
-            //{
-            //    return View(product);
-            //}
+            }
+            else
+            {
+                return View(product);
+            }
         }
     }
 }
