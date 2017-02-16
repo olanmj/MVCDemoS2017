@@ -44,7 +44,7 @@ namespace MVCDemo.Controllers
         {
             //if (ModelState.IsValid)
             //{
-            //    repo.Add(product);
+                repo.Add(product);
 
                 return RedirectToAction("Index");
 
