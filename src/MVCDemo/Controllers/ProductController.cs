@@ -42,8 +42,16 @@ namespace MVCDemo.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
-            repo.Add(product);
-            return RedirectToAction("Index");
+            //if (ModelState.IsValid)
+            //{
+            //    repo.Add(product);
+
+                return RedirectToAction("Index");
+
+            //} else
+            //{
+            //    return View(product);
+            //}
         }
     }
 }
