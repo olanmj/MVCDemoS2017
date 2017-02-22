@@ -9,32 +9,35 @@
         <div class="form-group">
             <label class="control-label col-md-2" asp-for="ProductID">Product ID</label>
             <div class="col-md-10">
-                <input class="form-control" type="number" id="ProductID" name="ProductID" />             
+                <input class="form-control" asp-for="ProductID" />             
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2" asp-for="Name">Name</label>
             <div class="col-md-10">
-                <input class="form-control" type="text" id="Name" name="Name" />
+                <input class="form-control" asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2" asp-for="Description">Description</label>
             <div class="col-md-10">
-                <input class="form-control" type="text" id="Description" name="Description" />
+                <input class="form-control" type="text" name="Description" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2" asp-for="Price">Price</label>
             <div class="col-md-10">
-                <input class="form-control" type="text" id="Price" name="Price" />
+                <input class="form-control" asp-for="Price" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2" asp-for="Category">Category</label>
             <div class="col-md-10">
-                <input class="form-control" type="text" id="Category" name="Category" />
-                <span class="text-danger field-validation-valid" data-valmsg-for="Category" data-valmsg-replace="true"></span>
+                <input class="form-control" asp-for="Category"/>
+                <span asp-validation-for="" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
