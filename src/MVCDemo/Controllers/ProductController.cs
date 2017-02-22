@@ -14,9 +14,16 @@ namespace MVCDemo.Controllers
         // This needs to be static
         private static ProductRepository repo = new ProductRepository();
 
+        private readonly ApplicationDbContext _context;
+
+        public ProductController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
-            return View(repo.ProductList);
+            return View(_context.Products.ToList());
+           // return View(repo.ProductList);
         }
 
         // GET: /<controller>/
@@ -42,10 +49,11 @@ namespace MVCDemo.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
-if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                repo.Add(product);
-
+                //repo.Add(product);
+                _context.Add(product);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
 
             }

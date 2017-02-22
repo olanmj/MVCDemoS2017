@@ -10,6 +10,7 @@ namespace MVCDemo.Models
         [StringLength(25, MinimumLength =2)]
         public string Name { get; set; }
         public string Description { get; set; }
+      
         public decimal Price { get; set; }
         [Required]
         public string Category { get; set; }
