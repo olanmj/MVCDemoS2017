@@ -7,6 +7,12 @@ namespace MVCDemo.Models
 {
     public class ProductRepository
     {
+        private readonly ApplicationDbContext _context;
+
+        public ProductRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public List<Product> ProductList { get; set; }
        
 
@@ -61,7 +67,9 @@ namespace MVCDemo.Models
 
         public void Add(Product product)
         {
-            ProductList.Add(product);
+            // ProductList.Add(product);
+            _context.Add(product);
+            _context.SaveChanges();
         }
     }
 

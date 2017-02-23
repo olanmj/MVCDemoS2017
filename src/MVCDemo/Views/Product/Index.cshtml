@@ -14,7 +14,7 @@
 {
     <tr>
         <td class="centered">@item.ProductID</td>
-        <td>@item.Name</td>
+        <td><a asp-action="ShowProduct" asp-route-id="@item.ProductID">@item.Name</a></td>
         <td>@item.Description</td>
         <td>@item.Category</td>
         <td class="money">@item.Price.ToString("C2")</td>

@@ -12,13 +12,14 @@ namespace MVCDemo.Controllers
     public class ProductController : Controller
     {
         // This needs to be static
-        private static ProductRepository repo = new ProductRepository();
+        private ProductRepository repo;
 
         private readonly ApplicationDbContext _context;
 
         public ProductController(ApplicationDbContext context)
         {
             _context = context;
+            repo = new ProductRepository();
         }
         public IActionResult Index()
         {
@@ -27,18 +28,25 @@ namespace MVCDemo.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult ShowProduct()
+        public IActionResult ShowProduct(int? id)
         {
-            Product p = new Product
+            Product prod;
+            if (id == null)
             {
-                ProductID = 101,
-                Name = "Kayak",
-                Description = "A boat for one person",
-                Price = 1000M,
-                Category = "Watersports"
-            };
+                prod = new Product
+                {
+                    ProductID = 101,
+                    Name = "Kayak",
+                    Description = "A boat for one person",
+                    Price = 1000M,
+                    Category = "Watersports"
+                };
+            } else
+            {
+                prod = _context.Products.SingleOrDefault(p => p.ProductID == id);
+            }
 
-            return View(p);
+            return View(prod);
         }
 
         public IActionResult AddProduct()
@@ -51,9 +59,9 @@ namespace MVCDemo.Controllers
         {
             if (ModelState.IsValid)
             {
-                //repo.Add(product);
-                _context.Add(product);
-                _context.SaveChanges();
+                repo.Add(product);
+                //_context.Add(product);
+                //_context.SaveChanges();
                 return RedirectToAction("Index");
 
             }
