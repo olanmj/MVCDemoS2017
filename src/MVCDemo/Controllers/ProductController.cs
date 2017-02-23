@@ -41,6 +41,21 @@ namespace MVCDemo.Controllers
             return View(p);
         }
 
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var product = _context.Products
+                    .SingleOrDefault(p => p.ProductID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View("ShowProduct", product);
+        }
+
         public IActionResult AddProduct()
         {
             return View();
