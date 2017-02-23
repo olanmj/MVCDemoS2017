@@ -36,3 +36,11 @@ textarea {
     display: none
   }
 }
+
+.money {
+    text-align: right;
+}
+
+.centered {
+    text-align: center;
+}
