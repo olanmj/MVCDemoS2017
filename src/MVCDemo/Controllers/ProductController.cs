@@ -49,7 +49,7 @@ namespace MVCDemo.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
-            if (ModelState.IsValid)
+        if (ModelState.IsValid)
             {
                 //repo.Add(product);
                 _context.Add(product);
