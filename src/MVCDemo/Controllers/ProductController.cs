@@ -49,6 +49,21 @@ namespace MVCDemo.Controllers
             return View(prod);
         }
 
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var product = _context.Products
+                    .SingleOrDefault(p => p.ProductID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View("ShowProduct", product);
+        }
+
         public IActionResult AddProduct()
         {
             return View();
@@ -57,7 +72,7 @@ namespace MVCDemo.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
-            if (ModelState.IsValid)
+        if (ModelState.IsValid)
             {
                 repo.Add(product);
                 //_context.Add(product);
