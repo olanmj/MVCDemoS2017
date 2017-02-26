@@ -4,11 +4,11 @@ CSIS 4135 Intro to MVC
 
 This branch includes Entity Framework to support persistent storage and CRUD operations (excludes Delete).
 
-**Model**
+## Model
 Basic information related to a Product
 
-**Controller**
+## Controller
 Provides most of the standard database operations except Delete. Does not use async operations. Only basic error checking and secuity features included.
 
-**Views**
+## Views
 Uses tag helpers and jQuery validation on input forms
