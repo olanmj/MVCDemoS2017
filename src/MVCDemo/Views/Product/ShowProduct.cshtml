@@ -3,27 +3,22 @@
 @{
 }
 
-@if (Model != null) { 
+@if (Model != null) {
 <h2>Product</h2>
 
-<span>Product Name: </span>@Model.Name
+<span>Product Name: @Model.Name</span>
 <br />
-<span>
-    Description:
-</span>@Model.Description
-    <br />
-    <span>
-        Category:
-    </span>@Model.Category
-        <br />
-        <span>
-            Price:
-        </span>@Model.Price
-            <br />
+<span>Description: @Model.Description</span>
+<br />
+ <span>Category: @Model.Category</span>
+ <br />
+ <span>Price: @Model.Price</span>
+<br />
+ <span>Amount due: @Model.AmountDue</span>
 }
 else
 {
-    <span>
+    < span >
         No product found
-    </span>
+    </ span >
 }

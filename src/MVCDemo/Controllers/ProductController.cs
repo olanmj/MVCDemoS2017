@@ -74,9 +74,9 @@ namespace MVCDemo.Controllers
         {
         if (ModelState.IsValid)
             {
-                repo.Add(product);
-                //_context.Add(product);
-                //_context.SaveChanges();
+                //repo.Add(product);
+                _context.Add(product);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
 
             }
@@ -84,6 +84,28 @@ namespace MVCDemo.Controllers
             {
                 return View(product);
             }
+        }
+
+        public IActionResult EditProduct(int id)
+        {
+            var product = _context.Products.SingleOrDefault(p => p.ProductID == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult EditProduct(int id, Product product)
+        {
+            if (id != product.ProductID)
+            {
+                return NotFound();
+            }
+            _context.Products.Update(product);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
