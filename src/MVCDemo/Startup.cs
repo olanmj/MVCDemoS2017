@@ -34,6 +34,7 @@ namespace MVCDemo
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+services.AddScoped<IProductRepository, MockProductRepository>();
             services.AddMvc();
         }
 

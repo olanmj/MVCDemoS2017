@@ -11,20 +11,15 @@ namespace MVCDemo.Controllers
 {
     public class ProductController : Controller
     {
-        // This needs to be static
-        private ProductRepository repo;
+        private IProductRepository repo;
 
-        private readonly ApplicationDbContext _context;
-
-        public ProductController(ApplicationDbContext context)
+        public ProductController(IProductRepository repository)
         {
-            _context = context;
-            repo = new ProductRepository();
+            repo = repository;
         }
         public IActionResult Index()
         {
-            return View(_context.Products.ToList());
-           // return View(repo.ProductList);
+            return View(repo.GetProductList());
         }
 
         // GET: /<controller>/
@@ -41,9 +36,10 @@ namespace MVCDemo.Controllers
                     Price = 1000M,
                     Category = "Watersports"
                 };
-            } else
+            }
+            else
             {
-                prod = _context.Products.SingleOrDefault(p => p.ProductID == id);
+                prod = repo.GetProduct((int) id);
             }
 
             return View(prod);
@@ -55,8 +51,8 @@ namespace MVCDemo.Controllers
             {
                 return NotFound();
             }
-            var product = _context.Products
-                    .SingleOrDefault(p => p.ProductID == id);
+            var product = repo.GetProduct((int) id);
+
             if (product == null)
             {
                 return NotFound();
@@ -72,11 +68,9 @@ namespace MVCDemo.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
-        if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                //repo.Add(product);
-                _context.Add(product);
-                _context.SaveChanges();
+                repo.Add(product);
                 return RedirectToAction("Index");
 
             }
@@ -86,9 +80,12 @@ namespace MVCDemo.Controllers
             }
         }
 
-        public IActionResult EditProduct(int id)
+        public IActionResult EditProduct(int? id)
         {
-            var product = _context.Products.SingleOrDefault(p => p.ProductID == id);
+            if (id == null) return NotFound();
+
+            var product = repo.GetProduct((int)id);
+
             if (product == null)
             {
                 return NotFound();
@@ -103,10 +100,10 @@ namespace MVCDemo.Controllers
             {
                 return NotFound();
             }
-            _context.Products.Update(product);
-            _context.SaveChanges();
+            repo.UpdateProduct(product);
             return RedirectToAction("Index");
         }
     }
 }
+
 

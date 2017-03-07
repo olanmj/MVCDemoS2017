@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MVCDemo.Models
 {
-    public class ProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -13,65 +13,31 @@ namespace MVCDemo.Models
         {
             _context = context;
         }
-        public List<Product> ProductList { get; set; }
-       
 
-        public ProductRepository()
+
+        public List<Product> GetProductList()
         {
-            ProductList = new List<Product>();
-
-            Product p = new Product
-            {
-                ProductID = 100,
-                Name = "Kayak",
-                Description = "A boat for one person",
-                Price = 1000M,
-                Category = "Watersports"
-            };
-
-            ProductList.Add(p);
-
-            p = new Product
-            {
-                ProductID = 101,
-                Name = "Widget",
-                Description = "A useless item",
-                Price = 0.99M,
-                Category = "Junk"
-            };
-
-            ProductList.Add(p);
-
-            p = new Product
-            {
-                ProductID = 102,
-                Name = "Row boat",
-                Description = "A boat for one or more people",
-                Price = 1000M,
-                Category = "Watersports"
-            };
-
-            ProductList.Add(p);
-
-            p = new Product
-            {
-                ProductID = 103,
-                Name = "Hammer",
-                Description = "Everything looks like a nail",
-                Price = 15.75M,
-                Category = "Hardware"
-            };
-
-            ProductList.Add(p);
+            return _context.Products.ToList();
         }
+
+        public Product GetProduct(int id)
+        {
+            return _context.Products.SingleOrDefault(p => p.ProductID == id);
+        }
+
 
         public void Add(Product product)
         {
-            // ProductList.Add(product);
             _context.Add(product);
             _context.SaveChanges();
         }
+
+        public Product UpdateProduct(Product product)
+        {
+            _context.Products.Update(product);
+            _context.SaveChanges();
+            return product;
+        }
+
     }
-
-
 }
