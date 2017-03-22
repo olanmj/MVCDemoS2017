@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using MVCDemo.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MVCDemo
 {
@@ -34,8 +35,14 @@ namespace MVCDemo
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddMvc();
+            services.AddSingleton<IProductRepository, MockProductRepository>();
+            //services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddMvc().AddXmlSerializerFormatters();
+            
+            services.Configure<MvcOptions>(options =>
+            {
+                options.RespectBrowserAcceptHeader = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +54,7 @@ namespace MVCDemo
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                //app.UseBrowserLink();
             }
             else
             {

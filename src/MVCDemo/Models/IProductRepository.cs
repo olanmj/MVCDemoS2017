@@ -8,5 +8,9 @@ namespace MVCDemo.Models
         List<Product> GetProductList();
 
         Product GetProduct(int? id);
+
+        void UpdateProduct(int id, Product product);
+
+        Product DeleteProduct(int id);
     }
 }

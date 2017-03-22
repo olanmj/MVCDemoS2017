@@ -71,5 +71,23 @@ namespace MVCDemo.Models
         {
             return ProductList.Find(p => p.ProductID == id);
         }
+
+        public void UpdateProduct(int id, Product product)
+        {
+            var currentProduct = ProductList.Find(p => p.ProductID == id);
+            currentProduct.Name = product.Name;
+            currentProduct.Price = product.Price;
+            currentProduct.Description = product.Description;
+            currentProduct.Quantity = product.Quantity;
+           // return product;    
+        }
+
+        public Product DeleteProduct(int id)
+        {
+            var product = ProductList.Find(p => p.ProductID == id);
+            ProductList.Remove(product);
+            return product;
+
+        }
     }
 }

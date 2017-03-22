@@ -32,6 +32,15 @@ namespace MVCDemo.Models
             _context.SaveChanges();
         }
 
+        public void UpdateProduct(int id, Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 
