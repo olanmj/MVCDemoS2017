@@ -74,9 +74,21 @@ namespace MVCDemo.Models
             return ProductList.Find(p => p.ProductID == id);
         }
 
-        public Product UpdateProduct(Product product)
+        public void UpdateProduct(int id, Product product)
         {
-            throw new NotImplementedException();
+            var currentProduct = ProductList.Find(p => p.ProductID == id);
+            currentProduct.Name = product.Name;
+            currentProduct.Description = product.Description;
+            currentProduct.Price = product.Price;
+            currentProduct.Quantity = product.Quantity;
         }
+
+        public Product DeleteProduct(int id)
+        {
+            var product = ProductList.Find(p => p.ProductID == id);
+            ProductList.Remove(product);
+            return product;
+        }
+
     }
 }

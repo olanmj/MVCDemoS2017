@@ -100,7 +100,7 @@ namespace MVCDemo.Controllers
             {
                 return NotFound();
             }
-            repo.UpdateProduct(product);
+            repo.UpdateProduct(id, product);
             return RedirectToAction("Index");
         }
     }

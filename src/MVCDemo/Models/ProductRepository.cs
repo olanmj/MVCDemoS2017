@@ -32,12 +32,15 @@ namespace MVCDemo.Models
             _context.SaveChanges();
         }
 
-        public Product UpdateProduct(Product product)
+        public void UpdateProduct(int id, Product product)
         {
             _context.Products.Update(product);
             _context.SaveChanges();
-            return product;
-        }
+    }
 
+        Product IProductRepository.DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

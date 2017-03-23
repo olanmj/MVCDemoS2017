@@ -7,6 +7,7 @@ namespace MVCDemo.Models
         void Add(Product product);
         Product GetProduct(int id);
         List<Product> GetProductList();
-        Product UpdateProduct(Product product);
+        void UpdateProduct(int id, Product product);
+        Product DeleteProduct(int id);
     }
 }
