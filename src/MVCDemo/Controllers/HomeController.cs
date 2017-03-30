@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace MVCDemo.Controllers
 {
@@ -12,6 +13,17 @@ namespace MVCDemo.Controllers
         {
             ViewData["UserName"] = name;
             ViewData["UserNum"] = number;
+
+            CookieOptions expires = new CookieOptions
+            {
+                Expires = DateTime.Now.AddYears(1)
+            };
+
+         //   Response.Cookies.Append("ZipCode", "08205", expires);
+
+            Response.Cookies.Append("lastvisit", DateTime.Now.ToString());
+
+            ViewData["Visited"] = Request.Cookies["lastvisit"];
             return View();
         }
 

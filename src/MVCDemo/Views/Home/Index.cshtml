@@ -2,6 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 
+@if (ViewData["Visited"] != null)
+{
+    <h4>
+        Your last visit was  @ViewData["Visited"]
+    </h4>
+}
+
+
 <h2>My very plain home page where you can experiment with product objects</h2>
 
 <a asp-action="ShowProduct" asp-controller="Product" class="btn btn-info">See a sample product</a>
